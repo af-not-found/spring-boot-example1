@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+<title th:text="${@environment.getProperty('spring.application.name')}">title</title>
+<link rel="stylesheet" type="text/css" href="/main.css" th:href="@{/main.css}" />
+</head>
+<body>
+	<div class="header" th:text="${@environment.getProperty('spring.application.name')}">header</div>
+	<div>
+		message : <span th:text="${message}">message content</span>
+	</div>
+	<div>
+		<div th:if="${#strings.isEmpty(param1)}">param1 is empty</div>
+		<div th:if="${not #strings.isEmpty(param1)}">
+			<span th:text="${param1}">param1 content</span>
+		</div>
+	</div>
+	<div>
+		<div th:if="${@environment.getActiveProfiles().length == 0}">environment is empty</div>
+		<div th:if="${@environment.getActiveProfiles().length > 0}">
+			environment : <span th:text="${#strings.arrayJoin(@environment.getActiveProfiles(),',')}">environment</span>
+		</div>
+	</div>
+	<div>
+		os name : <span th:text="${@systemProperties['os.name']}">os.name</span>
+	</div>
+</body>
+</html>
